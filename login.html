@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/ico" href="favicon.ico" />
+    <title>Log in to your account</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap");
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      body {
+        font-family: "Manrope", sans-serif;
+        background-image: linear-gradient(
+            75deg,
+            rgb(6 6 6 / 80%) 8%,
+            transparent
+          ),
+          url("st.png");
+        background-size: cover;
+        background-position: top;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        flex-direction: column;
+      }
+
+      label {
+        font-size: 12px;
+        font-weight: 500;
+        margin-bottom: 6px;
+      }
+      #card {
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+        height: 600px;
+        width: 400px;
+        margin:auto;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      #card:hover {
+        transform: scale(1);
+        box-shadow: 0 0 100px rgba(0, 0, 0, 0.2);
+      }
+
+      #card-content {
+        padding: 24px 44px;
+      }
+
+      #card-title {
+        font-size: 24px;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      #title {
+        font-size: 24px;
+        font-weight: 600;
+        text-align: left;
+        margin-left: -1500px;
+        color: white;
+        margin-top: 10px;
+      }
+      #submit-btn {
+        background: #00a651;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+        height: 42.3px;
+        margin: 30px auto 0;
+        transition: 0.25s;
+        width: 100%;
+        transition: background-color 0.3s;
+      }
+
+      #submit-btn:hover {
+        background-color:#0e5e35;
+        transform: none;
+      }
+
+      .form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .form-border {
+        background: -webkit-linear-gradient(right, #00a651, #00a651);
+        height: 1px;
+        width: 100%;
+      }
+
+      .form-content {
+        background: #ffffff;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        margin-bottom: 16px;
+        padding: 12px;
+        width: 100%;
+      }
+
+      .underline-title {
+        background: -webkit-linear-gradient(right, #a6f77b, #2ec06f);
+        height: 2px;
+        margin: -1.1rem auto 0 auto;
+        width: 89px;
+      }
+
+      .password-container {
+        position: relative;
+      }
+      .footer {
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        background-color: transparent;
+        padding: 10px 0;
+        color: black;
+        font-size: 12px;
+      }
+      .logo {
+        text-align: center;
+        margin-bottom: -60px;
+        margin-top: 20px;
+      }
+
+      .para {
+        font-size: 12px;
+        font-family: Manrope, sans-serif;
+        text-align: justify;
+        margin-top: 30px;
+      }
+      /* CSS styles */
+      #progress-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: transparent;
+        z-index: 9999;
+      }
+
+      #progress-bar {
+        height: 4px;
+        background-color: #00a651;
+        width: 0;
+        animation: progressBarAnimation 1s forwards;
+      }
+
+      @keyframes progressBarAnimation {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      #link-container {
+        display: flex;
+        justify-content: space-between; /* Adjust this as needed */
+        gap: 10px; /* Add spacing between the items */
+      }
+
+      .link-item1 {
+        margin-top: 5px;
+        font-size: 12px; /* Adjust font size as needed */
+        cursor: pointer;
+        text-decoration: none;
+        color: #8f93a2; /* Maintain link color */
+      }
+      .link-item2 {
+        margin-top: 5px;
+        font-size: 12px; /* Adjust font size as needed */
+        cursor: pointer;
+        text-decoration: none;
+        color: #8f93a2; /* Maintain link color */
+      }
+
+      a {
+        text-decoration: none; /* Remove underline from links */
+      }
+
+      a:hover .link-item {
+        text-decoration: underline; /* Underline on hover */
+      }
+
+      .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Dim background */
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+    }
+
+    .modal h1 {
+      color: #ff0000;
+      margin-bottom: 20px;
+    }
+
+    .modal p {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 15px;
+      color: #fff;
+      background-color: #00a651;
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+      margin-bottom: 20px;
+    }
+
+    .btn:hover {
+      background-color: #0e5e35;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+      @media (width < 768px) {
+        body {
+          background-image: none;
+        }
+        #card {
+          box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+          border-radius: 30px;
+          height: 450px;
+          width: 380px;
+          margin-top: 20px;
+        }
+        #card:hover {
+          transform: scale(1);
+          box-shadow: none;
+        }
+        #submit-btn {
+          border-radius: 30px;
+          width: 100%;
+        }
+        #submit-btn-hover {
+          box-shadow: 0 0 10px white;
+        }
+        .form-content {
+          border: 1px solid #ccc;
+          width: 90%;
+        }
+
+        #title
+        {
+          display: none;
+        }
+
+        #card-title
+        {
+          font-size: 20px;
+        }
+
+        .para {
+          font-size: 10px;
+          margin-top: 50px;
+          text-align: justify;
+        }
+        .footer {
+          color: black;
+          font-size: 10px;
+        }
+        .form-border{
+          display: none;
+        }
+        body
+        {
+          height: 93vh;
+        }
+        .modal-content
+      {
+        max-width: 320px;
+
+      }
+      .modal p {
+      font-size: 12px;
+    }
+      }
+
+      .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 12px;
+      color: #00a651;
+    }
+    </style>
+  </head>
+
+  <body>
+    <div id="progress-container">
+      <div id="progress-bar"></div>
+    </div>
+    <div id="title">
+      <h2>Study<span style="color: #00a651">Materials</span></h2>
+    </div>
+
+    <div id="card" style="margin-top: 50px;">
+      <div id="card-content">
+        <div id="card-title">
+          <h3>Log in to your <span style="color: #00a651">account</span></h3>
+          <div class="underline-title" style="margin-top: 30px"></div>
+        </div>
+        <form method="post" class="form">
+          <label for="user-roll">Roll:</label>
+          <input
+            id="user-roll"
+            class="form-content"
+            type="text"
+            name="roll"
+            autocomplete="on"
+            required
+            style="font-family: Manrope, sans-serif"
+          />
+          <div class="form-border"></div>
+          <label for="user-password">Password:</label>
+          <div class="password-container">
+            <input
+              id="user-password"
+              class="form-content"
+              type="password"
+              name="password"
+              required
+              style="font-family: Manrope, sans-serif"
+            />
+            <span class="toggle-password" onclick="togglePasswordVisibility()">Show password</span>
+          </div>
+          <div class="form-border"></div>
+          <div id="link-container">
+            <a href="http://192.168.0.102:3051" id="link-item1">
+              <legend class="link-item1">Don't have an account?</legend>
+            </a>
+            <a href="http://192.168.0.102:3050" id="link-item2">
+              <legend class="link-item2">Forgot password?</legend>
+            </a>
+          </div>
+
+          <input
+            id="submit-btn"
+            type="submit"
+            name="submit"
+            value="LOGIN"
+            style="font-family: Manrope, sans-serif"
+          />
+        </form>
+        
+        <p class="para">
+          
+          Please ensure that your <span style="color: #00a651">roll</span> and
+          <span style="color: #00a651">password</span> are entered correctly. If
+          you encounter difficulties logging into your account, please proceed
+          to the <span style="color: #00a651">'Forgot password'</span> section
+          and follow the instructions to retrieve your password.
+        </p>
+      </div>
+    </div>
+    <div class="modal" id="errorModal">
+      <div class="modal-content">
+        <button class="close-btn" onclick="closeModal()">×</button>
+        <h1 id="errorTitle"></h1>
+        <p id="errorMessage"></p>
+        <a href="/login" class="btn">Return to homepage</a>
+      </div>
+    </div>
+    <div class="footer">
+      ©2024, Designed and developed by
+      <a
+        href="https://teamsiliconx.github.io/aboutus"
+        style="color: #00a651; text-decoration: none;" id="Siliconx"
+        >Siliconx Softwares</a
+      >(ECE, KUET). Powered by Central Computer Center(KUET). All rights reserved.
+    </div>
+    <script>
+      // Function to show progress bar for 1 second
+      function showProgressBar(callback) {
+        // Show progress bar
+        document.getElementById("progress-bar").style.display = "block";
+
+        // Hide progress bar after 1 second
+        setTimeout(function () {
+          document.getElementById("progress-bar").style.display = "none";
+          if (callback) {
+            callback(); // Execute callback function
+          }
+        }, 1000);
+      }
+
+      // Attach click event listener to "LOGIN" button
+      document
+        .getElementById("submit-btn")
+        .addEventListener("click", function (event) {
+          showProgressBar(); // Show progress bar when button is clicked
+        });
+
+      // Attach click event listener to "Don't have an account?" link
+      document
+        .getElementById("link-item1")
+        .addEventListener("click", function (event) {
+          event.preventDefault(); // Prevent default link behavior
+          showProgressBar(function () {
+            window.location.href = "http://192.168.0.102:3051"; // Redirect after progress bar animation completes
+          }); // Show progress bar when link is clicked
+        });
+
+      // Attach click event listener to "Forgot password?" link
+      document
+        .getElementById("link-item2")
+        .addEventListener("click", function (event) {
+          event.preventDefault(); // Prevent default link behavior
+          showProgressBar(function () {
+            window.location.href = "http://192.168.0.102:3050"; // Redirect after progress bar animation completes
+          }); // Show progress bar when link is clicked
+        });
+        document
+        .getElementById("Siliconx")
+        .addEventListener("click", function (event) {
+          event.preventDefault(); // Prevent default link behavior
+          showProgressBar(function () {
+            window.location.href = "https://teamsiliconx.github.io/aboutus"; // Redirect after progress bar animation completes
+          }); // Show progress bar when link is clicked
+        });
+
+       // Show progress bar when page loads
+    window.addEventListener("load", function () {
+      showProgressBar();
+
+      // Check URL for error parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      const error = urlParams.get("error");
+      if (error === "user-not-found") {
+        showModal("User Not Found!", "The roll you entered does not exist in the database.If you are facing trouble again, please contact with the authority.");
+        urlParams.delete("error"); // Remove error parameter
+        window.history.replaceState({}, document.title, window.location.pathname); // Update URL without refreshing
+      } else if (error === "invalid-password") {
+        showModal("Invalid Password!", "The password you entered is incorrect.Please check again your password and try again.If you are facing trouble again, please contact with the authority.");
+        urlParams.delete("error"); // Remove error parameter
+        window.history.replaceState({}, document.title, window.location.pathname); // Update URL without refreshing
+      }
+    });
+
+    // Function to show the modal with error message
+    function showModal(title, message) {
+      document.getElementById('errorTitle').textContent = title;
+      document.getElementById('errorMessage').textContent = message;
+      document.getElementById('errorModal').style.display = 'flex';
+    }
+
+    // Function to close the modal
+    function closeModal() {
+      document.getElementById('errorModal').style.display = 'none';
+    }
+      // Function to toggle password visibility
+    function togglePasswordVisibility() {
+      const passwordInput = document.getElementById('user-password');
+      const togglePasswordText = document.querySelector('.toggle-password');
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        togglePasswordText.textContent = 'Hide password';
+      } else {
+        passwordInput.type = 'password';
+        togglePasswordText.textContent = 'Show password';
+      }
+    }
+
+    
+    </script>
+  </body>
+</html>
