@@ -8,7 +8,12 @@ const app = express();
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public"))); // Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public'))); // Adjust this if your static files are in 'public'
+
+// Serve the dev.html file explicitly
+app.get('/dev.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dev.html'));
+});
 
 // Load users from file
 let users = loadUsers();
