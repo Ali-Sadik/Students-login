@@ -31,7 +31,7 @@ app.post("/login", (req, res) => {
       const group = roll.slice(2, 4);
       switch (group) {
         case "09":
-          return res.redirect("http://192.168.0.102:3009");
+          return res.redirect("https://ece-home.vercel.app");
         case "05":
           return res.redirect("http://192.168.0.102:3013");
         // Add more cases for additional groups
